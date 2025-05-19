@@ -1,0 +1,243 @@
+/* 页面整体样式设置 */
+body {
+  margin: 0; /* 去除浏览器默认外边距 */
+  padding: 0; /* 去除默认内边距 */
+  font-family: "Helvetica Neue", sans-serif; /* 设置全局字体 */
+  height: 100vh; /* 视口高度100%，撑满屏幕 */
+  display: flex; /* 启用flex布局，方便垂直居中内容 */
+  flex-direction: column; /* 垂直方向排列子元素 */
+  justify-content: center; /* 垂直居中内容 */
+  align-items: center; /* 水平居中内容 */
+  overflow: hidden; /* 隐藏溢出内容，防止滚动条 */
+  
+  /* 背景图相关设置 */
+  background-image: url('background.jpg'); /* 背景图片路径，替换成你图片文件名 */
+  background-size: cover; /* 背景图覆盖整个容器 */
+  background-position: center; /* 背景图居中显示 */
+  background-repeat: no-repeat; /* 不重复背景图 */
+  background-color: #000; /* 背景色为黑色，防止图片加载失败时全白 */
+  
+  color: #fff; /* 文字颜色设为白色 */
+  position: relative; /* 相对定位，为伪元素遮罩提供定位参考 */
+}
+
+/* 利用伪元素在body上添加半透明遮罩层 */
+body::before {
+  content: ""; /* 伪元素必须有内容，即使为空 */
+  position: absolute; /* 绝对定位，铺满整个body */
+  top: 0; /* 顶部对齐 */
+  left: 0; /* 左侧对齐 */
+  width: 100%; /* 宽度100% */
+  height: 100%; /* 高度100% */
+  background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色遮罩，0.5为透明度 */
+  z-index: 0; /* z轴层级，放在最底层 */
+}
+
+/* 标题和菜单都要在遮罩层之上显示 */
+.title,
+.menu {
+  position: relative; /* 相对定位，建立新的层级上下文 */
+  z-index: 1; /* 确保显示在遮罩层之上 */
+}
+
+/* 标题样式 */
+.title {
+  font-size: 5em; /* 字体大小3倍基准 */
+  animation: fadeIn 2s ease-in-out forwards; /* 2秒淡入动画，动画结束保持最后状态 */
+  opacity: 0; /* 初始透明度为0（动画开始状态） */
+  margin-bottom: 5rem; /* 标题与菜单之间的垂直间距，控制上浮效果 */
+}
+
+/* 菜单容器设置 */
+.menu {
+  display: flex; /* 横向排列菜单项 */
+  flex-direction: row; /* 水平排列 */
+  gap: 7rem; /* 菜单项之间间隔2rem */
+  justify-content: center; /* 水平居中菜单 */
+  align-items: center; /* 垂直居中菜单项 */
+  margin-top: 2rem; /* 菜单距离标题的上边距 */
+}
+
+/* 菜单项样式 */
+.menu-item {
+  font-size: 1.5em; /* 字体大小 */
+  text-decoration: none; /* 去掉超链接下划线 */
+  color: #ccc; /* 初始颜色为浅灰 */
+  opacity: 0; /* 初始透明度为0，配合动画 */
+  transition: color 0.3s; /* 颜色变化时平滑过渡 */
+  animation: fadeIn 1s ease-in-out forwards; /* 1秒淡入动画 */
+}
+
+/* 鼠标悬停时菜单项颜色变白 */
+.menu-item:hover {
+  color: #fff;
+}
+
+/* 不同菜单项动画延迟，实现依次淡入 */
+/* 第1个菜单项延迟2.5秒 */
+.menu-item:nth-child(1) {
+  animation-delay: 1.5s;
+}
+
+/* 第2个菜单项延迟3.5秒 */
+.menu-item:nth-child(2) {
+  animation-delay: 2.5s;
+}
+
+/* 第3个菜单项延迟4.5秒 */
+.menu-item:nth-child(3) {
+  animation-delay: 3.5s;
+}
+
+/* 第4个菜单项延迟5.5秒 */
+.menu-item:nth-child(4) {
+  animation-delay: 4.5s;
+}
+
+/* 淡入动画关键帧定义 */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* 开始时透明 */
+    transform: translateY(20px); /* 从下方20px位置开始 */
+  }
+  to {
+    opacity: 1; /* 结束时不透明 */
+    transform: translateY(0); /* 位置回到初始 */
+  }
+}
+
+/* 设置研究领域页面的整体背景样式 */
+.research-page {
+  background-image: url('background.jpg'); /* 设置背景图片（请确保该图片文件在同一文件夹内） */
+  background-size: cover; /* 让背景图片覆盖整个页面 */
+  background-position: center; /* 将背景图居中显示 */
+  background-repeat: no-repeat; /* 防止背景图重复平铺 */
+  min-height: 100vh; /* 页面最小高度为视口高度，确保全屏显示 */
+  margin: 0; /* 去除默认外边距 */
+  padding: 0; /* 去除默认内边距 */
+  font-family: 'Helvetica', sans-serif; /* 设置页面字体 */
+  color: white; /* 设置字体颜色为白色 */
+}
+
+/* 页面内容容器，用于居中和设置半透明背景框 */
+.content-container {
+  background-color: rgba(0, 0, 0, 0.6); /* 设置半透明黑色背景 */
+  z-index: 0; /* z轴层级，放在最底层 */
+  margin: 50px auto; /* 设置上下边距为50px，水平自动居中 */
+  padding: 30px 40px; /* 设置上下左右内边距 */
+  max-width: 800px; /* 设置最大宽度，限制内容太宽 */
+  border-radius: 12px; /* 圆角边框，提升美观性 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* 添加投影效果，增强立体感 */
+}
+
+/* 所有 h1（页面主标题）的样式 */
+h1 {
+  font-size: 36px; /* 设置字体大小 */
+  margin-bottom: 30px; /* 下方间距 */
+  text-align: center; /* 居中显示标题 */
+}
+
+/* 所有 h2（小标题）的样式 */
+h2 {
+  font-size: 24px; /* 设置字体大小 */
+  margin-top: 25px; /* 与上一段内容的上间距 */
+  margin-bottom: 10px; /* 与正文之间的下间距 */
+}
+
+/* 所有 p（段落）的样式 */
+p {
+  line-height: 1.6; /* 设置行间距 */
+  font-size: 16px; /* 设置字体大小 */
+}
+
+/* 返回首页链接样式 */
+.back-link {
+  display: inline-block; /* 设置为块级元素以便添加边距 */
+  margin-top: 30px; /* 上间距 */
+  color: #ffffff; /* 链接字体颜色 */
+  text-decoration: none; /* 去除下划线 */
+  font-weight: bold; /* 加粗 */
+  transition: color 0.3s; /* 鼠标悬停时颜色变换的动画时间 */
+}
+
+/* 悬停时链接颜色变为浅蓝色 */
+.back-link:hover {
+  color: #a0d8ff;
+}
+
+/* ====== 团队成员页面整体背景设置 ====== */
+body.team-page {
+  margin: 0; /* 去除默认外边距 */
+  font-family: "Helvetica Neue", sans-serif; /* 设置页面字体 */
+  background-image: url('background.jpg'); /* 设置背景图片（请确保该图片文件在同一文件夹内） */
+  background-size: cover; /* 让背景图片覆盖整个页面 */
+  background-position: center; /* 将背景图居中显示 */
+  background-repeat: no-repeat; /* 防止背景图重复平铺 */
+  color: #fff; /* 全局文字颜色为白色 */
+}
+
+/* ====== 团队成员内容区域容器 ====== */
+.team-container {
+  background-color: rgba(0, 0, 0, 0.6); /* 添加黑色半透明背景 */
+  z-index: 0; /* z轴层级，放在最底层 */  
+  padding: 40px; /* 内容内边距 */
+  max-width: 1000px; /* 最大宽度 */
+  margin: 80px auto; /* 页面垂直居中并水平居中 */
+  border-radius: 12px; /* 边框圆角 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
+}
+
+/* ====== 页面主标题样式 ====== */
+.team-container h1 {
+  text-align: center; /* 文字居中 */
+  font-size: 36px; /* 字体大小 */
+  margin-bottom: 40px; /* 与下方内容间距 */
+  color: #ffffff; /* 白色文字 */
+}
+
+/* ====== 每位成员的卡片容器 ====== */
+.member {
+  display: flex; /* 使用 flex 布局 */
+  align-items: flex-start; /* 子元素顶部对齐 */
+  margin-bottom: 30px; /* 卡片之间的间距 */
+  gap: 20px; /* 图片与文字之间的间距 */
+}
+
+/* ====== 成员照片样式 ====== */
+.member img {
+  width: 150px; /* 图片宽度 */
+  height: 150px; /* 图片高度 */
+  object-fit: cover; /* 保持图片比例并裁剪以填满容器 */
+  border-radius: 10px; /* 圆角处理 */
+  border: 2px solid #fff; /* 添加白色边框 */
+}
+
+/* ====== 成员介绍文字区域 ====== */
+.member-info h2 {
+  margin: 0 0 10px 0; /* 设置标题的上下间距 */
+  font-size: 24px; /* 字体大小 */
+  color: #fff; /* 设置名字为亮黄色 */
+}
+
+.member-info p {
+  font-size: 16px; /* 简介文字大小 */
+  line-height: 1.6; /* 行间距 */
+  color: #f0f0f0; /* 稍浅的白色文字 */
+}
+
+/* ====== 返回首页链接样式 ====== */
+.back-link {
+  display: block; /* 作为块级元素显示 */
+  text-align: center; /* 居中显示 */
+  margin-top: 40px; /* 顶部留白 */
+  font-size: 16px; /* 字体大小 */
+  color: #ffffff; /* 链接文字颜色 */
+  text-decoration: none; /* 去掉下划线 */
+  transition: color 0.3s; /* 鼠标悬停颜色变化过渡 */
+}
+
+.back-link:hover {
+  color: #ffdd57; /* 悬停时变为黄色 */
+}
+
+
