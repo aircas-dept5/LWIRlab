@@ -1,5 +1,5 @@
 /* 页面整体样式设置 */
-body {
+body.homepage {
   margin: 0; /* 去除浏览器默认外边距 */
   padding: 0; /* 去除默认内边距 */
   font-family: "Helvetica Neue", sans-serif; /* 设置全局字体 */
@@ -8,7 +8,7 @@ body {
   flex-direction: column; /* 垂直方向排列子元素 */
   justify-content: center; /* 垂直居中内容 */
   align-items: center; /* 水平居中内容 */
-  overflow: hidden; /* 隐藏溢出内容，防止滚动条 */
+  overflow-y: auto; /*允许页面内容垂直滚动 */
   
   /* 背景图相关设置 */
   background-image: url('background.jpg'); /* 背景图片路径，替换成你图片文件名 */
@@ -24,11 +24,11 @@ body {
 /* 利用伪元素在body上添加半透明遮罩层 */
 body::before {
   content: ""; /* 伪元素必须有内容，即使为空 */
-  position: absolute; /* 绝对定位，铺满整个body */
+  position: fixed; /* 绝对定位，铺满整个body */
   top: 0; /* 顶部对齐 */
   left: 0; /* 左侧对齐 */
   width: 100%; /* 宽度100% */
-  height: 100%; /* 高度100% */
+  height: 100vh; /* 高度100% */
   background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色遮罩，0.5为透明度 */
   z-index: 0; /* z轴层级，放在最底层 */
 }
@@ -106,6 +106,8 @@ body::before {
   }
 }
 
+
+
 /* 设置研究领域页面的整体背景样式 */
 .research-page {
   background-image: url('background.jpg'); /* 设置背景图片（请确保该图片文件在同一文件夹内） */
@@ -121,11 +123,14 @@ body::before {
 
 /* 页面内容容器，用于居中和设置半透明背景框 */
 .content-container {
+  position: relative; /* 建立层级上下文，使内容浮在遮罩上面 */
+  z-index: 1;  
   background-color: rgba(0, 0, 0, 0.6); /* 设置半透明黑色背景 */
   z-index: 0; /* z轴层级，放在最底层 */
-  margin: 50px auto; /* 设置上下边距为50px，水平自动居中 */
+  padding: 80px 40px 40px; /* 设置上下边距为50px，水平自动居中 */
   padding: 30px 40px; /* 设置上下左右内边距 */
   max-width: 800px; /* 设置最大宽度，限制内容太宽 */
+  margin: 100px auto 100px; /* 上下边距：顶部留更大空间避免被遮挡 */
   border-radius: 12px; /* 圆角边框，提升美观性 */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* 添加投影效果，增强立体感 */
 }
@@ -148,6 +153,18 @@ h2 {
 p {
   line-height: 1.6; /* 设置行间距 */
   font-size: 16px; /* 设置字体大小 */
+}
+
+ul {
+  padding-left: 20px; /* 左侧内边距 */
+  color: #fff;        /* 文字颜色为白色以适配深背景 */
+}
+
+li {
+  margin-bottom: 10px; /* 每篇文章之间留出间距 */
+  line-height: 1.8;    /* 行间距稍大，便于阅读 */
+  font-size: 16px;
+  text-align: justify; /* 让论文列表内容两端对齐 */
 }
 
 /* 返回首页链接样式 */
@@ -178,13 +195,15 @@ body.team-page {
 
 /* ====== 团队成员内容区域容器 ====== */
 .team-container {
+  position: relative; /* 建立层级上下文，使内容浮在遮罩上面 */
+  z-index: 1;  
   background-color: rgba(0, 0, 0, 0.6); /* 添加黑色半透明背景 */
-  z-index: 0; /* z轴层级，放在最底层 */  
   padding: 40px; /* 内容内边距 */
   max-width: 1000px; /* 最大宽度 */
-  margin: 80px auto; /* 页面垂直居中并水平居中 */
+  margin: 100px auto 100px; /* 上下边距：顶部留更大空间避免被遮挡 */
   border-radius: 12px; /* 边框圆角 */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
+  box-sizing: border-box; /* 防止 padding 推大元素宽度 */
 }
 
 /* ====== 页面主标题样式 ====== */
@@ -209,14 +228,14 @@ body.team-page {
   height: 150px; /* 图片高度 */
   object-fit: cover; /* 保持图片比例并裁剪以填满容器 */
   border-radius: 10px; /* 圆角处理 */
-  border: 2px solid #fff; /* 添加白色边框 */
+  /* border: 2px solid #fff; 添加白色边框 */
 }
 
 /* ====== 成员介绍文字区域 ====== */
 .member-info h2 {
   margin: 0 0 10px 0; /* 设置标题的上下间距 */
   font-size: 24px; /* 字体大小 */
-  color: #fff; /* 设置名字为亮黄色 */
+  color: #fff; /* 设置名字为白色 */
 }
 
 .member-info p {
