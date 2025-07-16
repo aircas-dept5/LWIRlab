@@ -215,12 +215,13 @@ body.team-page {
 }
 
 /* ====== 每位成员的卡片容器 ====== */
-.member {
-  display: flex; /* 使用 flex 布局 */
-  align-items: flex-start; /* 子元素顶部对齐 */
-  margin-bottom: 30px; /* 卡片之间的间距 */
-  gap: 20px; /* 图片与文字之间的间距 */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 两列 */
+  gap: 30px; /* 元素之间的空隙 */
+
 }
+
 
 /* ====== 成员照片样式 ====== */
 .member img {
@@ -246,7 +247,8 @@ body.team-page {
 
 /* ====== 返回首页链接样式 ====== */
 .back-link {
-  display: block; /* 作为块级元素显示 */
+  display: block; /* 作为块级元素显示 */s
+  width: 100%;            /* 确保占满整行宽度 */
   text-align: center; /* 居中显示 */
   margin-top: 40px; /* 顶部留白 */
   font-size: 16px; /* 字体大小 */
@@ -258,5 +260,3 @@ body.team-page {
 .back-link:hover {
   color: #ffdd57; /* 悬停时变为黄色 */
 }
-
-
